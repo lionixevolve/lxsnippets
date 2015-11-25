@@ -1,6 +1,5 @@
-/* Obtener los datos de la llamada del API , crear la tabla de webix y pasarle los datos 
- Contenedor en el html 
-<div id="pendingDatatable"></div> 
+/* Obtener los datos de la llamada del API , crear la tabla de webix y pasarle los datos que se obtubieron del API.
+ Contenedor en el html : <div id="pendingDatatable"></div> 
  */
 crmService.getCallsByStatus('Pending') // Servicio que llama al API
             .then(function (html) {
