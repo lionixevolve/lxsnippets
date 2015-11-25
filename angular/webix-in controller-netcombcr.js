@@ -103,7 +103,7 @@ crmService.getCallsByStatus('Pending') // Servicio que llama al API
                 //Ordenar tabla por fecha 
                 pendingDatatable.sort("#date_entered#", "desc", "string");
                 pendingDatatable.markSorting("date_entered", "desc");
-                //Auto ajustar columnas  
+                //Auto ajustar el texto en la fila, cuando llege al final de la columna lo tira para abajo 
                 pendingDatatable.adjustRowHeight("options_c");
                 pendingDatatable.adjustRowHeight("result_c");
 
