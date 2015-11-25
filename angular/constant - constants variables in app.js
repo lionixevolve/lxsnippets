@@ -1,7 +1,6 @@
 /*
  * Varibles constantes en la app
 */
-
 var sierraApp = angular
     angular
         .module('app', [
@@ -16,4 +15,29 @@ var sierraApp = angular
             'translatorModules': ["MENU.DASHBOARD.DASHBOARD", "MENU.ASSIGNED.ASSIGNED", "MENU.UPCOMING.UPCOMING", "MENU.PENDING.PENDING", "MENU.COMPLETED.COMPLETED", "MENU.PROFILE.PROFILE"],
             'staffModules': ["MENU.SCHEDULE.SCHEDULE", "MENU.REPORTS.REPORTS", "MENU.INTERPRETERS.INTERPRETERS", "MENU.STAFF.STAFF", "MENU.CLIENTS.CLIENTS"]
         })
+    ]);
+
+(function () {
+    'use strict';
+
+    angular
+        .module('app.sierra.UserService', [])
+        .factory('UserService', UserService);
+
+    /* @ngInject */
+    function UserService($http, API_CONFIG, localStorageService) {
+        $http.defaults.headers.common.Authorization = 'Bearer ' + localStorageService.get('token');
+        return {
+            createUser: function (user) {},
+            getUser: function () {
+                return $http.get(API_CONFIG.url + 'api/v1/whoami');
+            },
+            updateUser: function (user) {},
+            getUserList: function () {}
+        }
+    };
+
+})();
+    
+    
 
