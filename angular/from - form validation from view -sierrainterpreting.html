@@ -1,0 +1,97 @@
+    <form name="staff" novalidate>
+        <md-card-content>
+            <md-icon ng-if="vm.result" md-font-icon="{{vm.msn_icon}}" style="color: {{vm.msn_color}}"> {{vm.msn}}</md-icon>
+            <md-progress-linear class="margin-bottom-20" md-mode="indeterminate" ng-show="vm.showProgress"></md-progress-linear>
+            <div layout="row" layout-wrap>
+
+                <div layout="column" flex flex-sm="100">
+                    <div class="box-alert-padding" style="width:95%">
+
+                        <md-input-container>
+                            <label>First Name</label>
+                            <input id="firstname" label="firstname" name="firstname" type="text" ng-model="vm.staff.firstname" required>
+                            <div ng-messages="staff.firstname.$error">
+                                <div ng-message="required">
+                                    Requiered
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>Last Name</label>
+                            <input id="lastname" label="lastname" name="lastname" type="text" ng-model="vm.staff.lastname" required>
+                            <div ng-messages="staff.lastname.$error">
+                                <div ng-message="required">
+                                    Requiered
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label for="email">Email</label>
+                            <input id="email" label="email" name="email" type="email" ng-model="vm.staff.email" required/>
+                            <div ng-messages="staff.email.$error">
+                                <div ng-message="required">
+                                    Requiered
+                                </div>
+                                <div ng-message="email">
+                                    Please enter a valid email address.
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>Primary Phone </label>
+                            <input id="primary_phone" label="primary_phone" name="primary_phone" type="text" ng-model="vm.staff.primary_phone" required>
+                            <div ng-messages="staff.primary_phone.$error">
+                                <div ng-message="required">
+                                    Requiered
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                    </div>
+                </div>
+
+                <div layout="column" flex flex-sm="100">
+                    <div class="box-alert-padding">
+
+                        <md-input-container>
+                            <i style="position: absolute;" class="fa fa-map-marker"></i>
+                            <div style="margin: -28px 0 0 35px;" layout="row" layout-align="space-between center">
+                                <p flex translate>Select Region</p>
+                                <md-select md-container-class="calendar-color-select" ng-model="vm.staff.region" aria-label="Region">
+                                    <md-option ng-value="region" ng-repeat="region in vm.regions">{{region.name}}</md-option>
+                                </md-select>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <i style="position: absolute;" class="fa fa-calendar"></i>
+                            <md-icon class="padding-right-10" md-font-icon="zmdi zmdi-calendar-alt"></md-icon>
+                            <div style="margin: -20px 0 0 35px;" layout="row" layout-align="space-between center">
+                                <p flex translate> Birthdate</p>
+                                <input type="date" ng-model="vm.staff.birthdate" aria-label="birthdate">
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container>
+                            <label>Password </label>
+                            <input id="password" label="password" name="password" type="password" ng-model="vm.staff.password">
+                            <div ng-messages="staff.password.$error">
+                                <div ng-message="required">
+                                    login data: Requiered
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                    </div>
+                </div>
+
+            </div>
+            <div layout="row" layout-align="end center">
+                <md-button class="md-primary" ng-click="vm.createStaff()" ng-disabled="staff.$invalid">Create</md-button>
+                <md-button>Cancel</md-button>
+            </div>
+        </md-card-content>
+    </form>
