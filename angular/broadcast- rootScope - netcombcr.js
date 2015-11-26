@@ -33,26 +33,33 @@
 
 //EN EL CONTROLADOR PADRRE (HomeCtrl)
 app.controller('HomeCtrl', ["$scope", "crmService", "$localStorage", "CRM_REST_CONFIG", "$stateParams", "toaster", "$filter", "$http", "$rootScope", function ($scope, crmService, $localStorage, CRM_REST_CONFIG, $stateParams, toaster, $filter, $http, $rootScope) {
-
-            $scope.call_list = [];
-            $scope.historyDatatable_config = {
-                view: "datatable",
-                columns: [
-                    {
-                        id: "date_entered",
-                        header: "Fecha",
-                        format: webix.i18n.fullDateFormatDate(),
-                        sort: "string",
-                        width: 200
+    $scope.historyDatatable_config = {
+        view: "datatable",
+        columns: [
+            {
+                id: "date_entered",
+                header: "Fecha",
+                format: webix.i18n.fullDateFormatDate(),
+                sort: "string",
+                width: 200
                                             },
-                    {
-                        id: "lxcode_c",
-                        header: ["# Caso", {
-                            content: "textFilter"
+            {
+                id: "lxcode_c",
+                header: ["# Caso", {
+                    content: "textFilter"
                                             }],
-                        sort: "int",
-                        width: 90
+                sort: "int",
+                width: 90
                                         },
+            {
+                id: "created_username",
+                header: ["Usuario", {
+                    content: "selectFilter"
+                                            }],
+                sort: "string",
+                width: 100
+                                            },
+         ],
         autoheight: false,
         height: 500,
         autowidth: false,
@@ -62,47 +69,47 @@ app.controller('HomeCtrl', ["$scope", "crmService", "$localStorage", "CRM_REST_C
         fixedRowHeight: false,
         group: 5,
         on: {
-                        onItemClick: function (id) {
-                            var call = this.getItem(id);
-                            $scope.current_call_selected = call;
-                            //*** CUANDO SE LE DA CLIC A UNA FILA DE LA TABLA SE HACE UN BROADCAST AL ROOT SCOPE ***
-                            $rootScope.$broadcast('openNotePopup');
-                        }
+            onItemClick: function (id) {
+                var call = this.getItem(id);
+                $scope.current_call_selected = call;
+                //*** CUANDO SE LE DA CLIC A UNA FILA DE LA TABLA SE HACE UN BROADCAST AL ROOT SCOPE ***
+                $rootScope.$broadcast('openNotePopup');
+            }
         }
-                };
+    };
 }]);
 
 
 //EN EL CONTROLADOR HIJO (ModalNoteCtrl)
 app.controller('ModalNoteCtrl', ["$scope", "$modal", "$log", "$rootScope", function ($scope, $modal, $log, $rootScope) {
-            //Popup Note
-            $scope.openNotePopup = function () {
-                var call = $scope.$parent.current_call_selected;
+    //Popup Note
+    $scope.openNotePopup = function () {
+        var call = $scope.$parent.current_call_selected;
 
-                //Pass email selected to modal instance
-                var modalNoteInstance = $modal.open({
-                    templateUrl: 'callNote.html',
-                    controller: 'ModalNoteInstanceCtrl',
-                    size: 300,
-                    resolve: {
-                        call: function () {
-                            return call;
-                        }
-                    }
-                });
+        //Pass email selected to modal instance
+        var modalNoteInstance = $modal.open({
+            templateUrl: 'callNote.html',
+            controller: 'ModalNoteInstanceCtrl',
+            size: 300,
+            resolve: {
+                call: function () {
+                    return call;
+                }
+            }
+        });
 
-                modalNoteInstance.result.then(function () {
-                    $scope.$parent.loadContactHistory();
-                }, function () {
-                    console.log('Modal dismissed');
-                });
+        modalNoteInstance.result.then(function () {
+            $scope.$parent.loadContactHistory();
+        }, function () {
+            console.log('Modal dismissed');
+        });
 
-            };
+    };
 
-            //***CUANDO SE EJECUTE EL BROADCAST EJECUTAR LA FUNCIÓN DE ABRIL EL POPUP ***
-            var popupHandler = $rootScope.$on('openNotePopup', function (e) {
-                $scope.openNotePopup();
-            });
-            $scope.$on("$destroy", popupHandler);
+    //***CUANDO SE EJECUTE EL BROADCAST EJECUTAR LA FUNCIÓN DE ABRIL EL POPUP ***
+    var popupHandler = $rootScope.$on('openNotePopup', function (e) {
+        $scope.openNotePopup();
+    });
+    $scope.$on("$destroy", popupHandler);
 
 }]);
