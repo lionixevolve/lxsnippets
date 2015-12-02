@@ -42,6 +42,7 @@ function getLxSalesStageDropdown(currentValue,opportunityType)
         datatype : "text"
     }); // end ajax
 }// end function
+// On opportunities module
 var crmEditView = document.forms['EditView'];
 if (crmEditView) {
     console.log("Loading Lionix code on EditView on module:",crmEditView.module.value);
@@ -52,4 +53,29 @@ if (crmEditView) {
         });
     }
 }
+// On other modules
+// create an observer instance
+// https://developer.mozilla.org/en/docs/Web/API/MutationObserver
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (mutation.type == "attributes") {
+            if (mutation.target.nodeName=="FORM") {
+                //when found do your code
+                getLxSalesStageDropdown($("#sales_stage").val(),$("#opportunity_type").val()); //popoulate dropdown once when editview loads.
+                $('#opportunity_type').click(function() {
+                    getLxSalesStageDropdown($("#sales_stage").val(),$("#opportunity_type").val()); //popoulate dropdown once when editview loads.
+                });
+                // later, you can stop observing
+                observer.disconnect();
+            }
+        }
+    });
+});
+// Observer target
+var target = document.querySelector('#content');
+// configuration of the observer:
+// NOTE: At the very least, childList, attributes, or characterData must be set to true. Otherwise, "An invalid or illegal string was specified" error is thrown.
+var config = {attributes: true, childList: true, characterData: true, subtree: true };
+ // pass in the target node, as well as the observer options
+observer.observe(target, config);
 //eof
