@@ -1,0 +1,90 @@
+<div class="padded-content-page">
+
+    <div layout="row" layout-wrap layout-sm="column">
+        <div layout="column" layout-align="left left" flex>
+            <md-input-container>
+                <p flex translate>General Search:</p>
+                <input ng-model="search.$" aria-label="General Search">
+            </md-input-container>
+        </div>
+        <div layout="column" flex>
+  <md-input-container>
+    <i style="position: absolute;" class="fa fa-file"></i>
+    <div style="margin: -28px 0 0 35px;" layout="row" layout-align="space-between center">
+        <p flex translate>Search by Type</p>
+        <md-select md-container-class="calendar-color-select" ng-model="search.type" aria-label="Region">
+            <md-option value=" ">All</md-option>
+            <md-option ng-value="type" ng-repeat="type in vm.appt_types  | unique:'type' ">{{type}}</md-option>
+        </md-select>
+    </div>
+</md-input-container>
+            <md-input-container>
+                <i style="position: absolute;" class="fa fa-map-marker"></i>
+                <div style="margin: -28px 0 0 35px;" layout="row" layout-align="space-between center">
+                    <p flex translate>Search by Region</p>
+                    <md-select md-container-class="calendar-color-select" ng-model="search.region_name" aria-label="Region">
+                        <md-option value=" ">All</md-option>
+                        <md-option ng-value="region_name" ng-repeat="region in vm.appt_regions | unique:'region'">{{region}}</md-option>
+                    </md-select>
+                </div>
+            </md-input-container>
+        </div>
+        <div layout="column" layout-align="left left" flex>
+            <md-input-container>
+                <i style="position: absolute;" class="fa fa-calendar"></i>
+                <md-icon class="padding-right-10" md-font-icon="zmdi zmdi-calendar-alt"></md-icon>
+                <div style="margin: -20px 0 0 35px;" layout="row" layout-align="space-between center">
+                    <p flex translate>Search by Date</p>
+                    <input type="date" ng-model="region" aria-label="Appointment Date" ng-change="vm.filterByDate(date_selected);">
+                </div>
+            </md-input-container>
+        </div>
+    </div>
+
+    <md-icon ng-if="vm.result" md-font-icon="{{vm.msn_icon}}" style="color: {{vm.msn_color}}"> {{vm.msn}}</md-icon>
+    <md-card flex="50">
+        <md-card-content>
+            <md-list>
+                <md-subheader class="md-no-sticky">PENDING CONFIRMATION</md-subheader>
+                <p ng-if="vm.open_msg" style="color:grey; margin-left:20px; " ng-if="vm.open_msg"> Nothing Here </p>
+
+                <div ng-repeat="appoiment in vm.appoiments | filter:search">
+                    <md-divider></md-divider>
+                    <md-list-item class="md-3-line">
+                        <div class="md-list-item-text">
+
+                            <div layout="row" layout-wrap layout-sm="column">
+                                <div layout="column" style="text-align:center;max-width: 200px; flex-basis: auto; flex-grow: 1 ; ">
+                                    <p style="color:rgba(0,0,0,0.87);">{{appoiment.date}}</p>
+                                    <p>{{appoiment.starttime}} to {{appoiment.endtime}}</p>
+                                    <md-button class="md-raised md-primary" aria-label="pause" ng-click="vm.acceptAppoiment(appoiment)">ACCEPT </md-button>
+                                    <md-button class="md-raised md-warn" aria-label="cancel" ng-click="vm.declineAppoiment(appoiment)">DECLINE</md-button>
+                                    <div class="button-toolbar" layout="row">
+                                    </div>
+                                </div>
+                                <div layout="column" width="300px" flex="initial">
+                                    <p style="color:rgba(0,0,0,0.87);">Client {{appoiment.client}} - {{appoiment.region_name}}.
+                                    </p>
+                                    <p>Type of appt: {{appoiment.type}} / Location: {{appoiment.location}} / Location adress: {{appoiment.adress}} / Location phone: {{appoiment.location_phone}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </md-list-item>
+                    <md-divider></md-divider>
+                </div>
+            </md-list>
+        </md-card-content>
+    </md-card>
+</div>
+
+EN EL CONTROLADOR
+<script>
+ //filer appoiments by date
+        vm.filterByDate = function (date) {
+            var day_selected = $filter('date')(date, "MM/dd/yyyy");
+            vm.appoiments = $filter('filter')(vm.allAppoiments, {
+                date: day_selected
+            });
+        };
+</script>
