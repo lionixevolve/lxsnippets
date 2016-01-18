@@ -13,5 +13,5 @@ select a.*, o.account_id, c.salutation, c.firstname, c.lastname, c.surname2, c.c
                 where deleted = 0
                 and user_id = 3
             )
-            and c.deleted = 0
-            order by a.date asc;
+and c.deleted = 0
+order by a.date asc;
