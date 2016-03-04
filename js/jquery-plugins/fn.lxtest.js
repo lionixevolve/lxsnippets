@@ -2,13 +2,22 @@ console.log("jQuery plugin $.fn.lxtest added.");
 (function ( $ ) {
     $.fn.lxtest = function(options) {
         console.log("lxtest jQuery running");
-        $('<div id="lxtext" style="background-color: #f00; color: #fff;">lxtest</div>').appendTo(this);
         // This is the easiest way to have default options.
         var settings = $.extend({
             // These are the defaults.
             color: "#fff",
-            backgroundColor: "#f00"
+            backgroundColor: "#f00",
+            lxtext: true
         }, options );
+        // lxtext shows only once if present
+        if(settings.lxtext){
+            if ( this.find("#lxtext").length==0){
+                $('<div id="lxtext" style="background-color: #f00; color: #fff;">lxtest</div>').appendTo(this);
+            }
+        }else{
+            this.find("#lxtext").remove();
+        }
+        // color and background so far
         return this.css({
             color: settings.color,
             backgroundColor: settings.backgroundColor
