@@ -8,9 +8,7 @@ function lxValidateCRMfield(form_name, field_name, label, validate, fnCallerName
     } else {
         console.log("lxValidateCRMfield removing validation on form " + form_name + " to field " + field_name, fnCallerName);
         //removeFromValidate is defined somewhere on suitecrm
-        if (validate[form_name] !== undefined) {
-            removeFromValidate(form_name, field_name);
-            $('#' + field_name + '_label').html(label + ': ');
-        }
+        removeFromValidate(form_name, field_name);
+        $('#' + field_name + '_label').html(label + ': ');
     }
 }
