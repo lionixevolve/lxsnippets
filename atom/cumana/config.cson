@@ -1,0 +1,48 @@
+"*":
+  "atom-beautify":
+    _analyticsUserId: "5de0620f-9d7b-4748-aa27-6d6fcd4e8c52"
+  "atom-material-ui":
+    colors:
+      genAccent: true
+    fonts: {}
+    tabs:
+      compactTabs: true
+    treeView:
+      blendTabs: true
+      compactList: true
+    ui:
+      panelContrast: true
+  core:
+    projectHome: "/home/qma/public_html"
+    themes: [
+      "atom-material-ui"
+      "batman-syntax"
+    ]
+  editor:
+    invisibles: {}
+    preferredLineLength: 120
+    scrollPastEnd: true
+    softWrap: true
+    tabLength: 4
+    tabType: "soft"
+  "exception-reporting":
+    userId: "6d886709-da00-c858-61c9-317c462f0fcf"
+  "git-diff": {}
+  "git-plus": {}
+  "highlight-line":
+    enableBackgroundColor: false
+    enableSelectionBorder: true
+    underline: "dashed"
+  linter: {}
+  "merge-conflicts": {}
+  pomodoro:
+    pathToExecuteWithTimerAbort: "qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+    pathToExecuteWithTimerFinish: "qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
+    pathToExecuteWithTimerStart: "qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop && qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+    playSounds: false
+  "trailing-spaces":
+    enableForCursorLines: true
+    enableForIndentation: true
+  welcome:
+    showOnStartup: false
+  whitespace: {}
