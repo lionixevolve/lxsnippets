@@ -1,0 +1,9 @@
+'atom-workspace':
+  'ctrl-k ctrl-c': 'string-case:camelcase'
+  'ctrl-k ctrl-k': 'string-case:kebabcase'
+  'ctrl-k ctrl-p': 'string-case:pascalcase'
+  'ctrl-k ctrl-s': 'string-case:snakecase'
+  'ctrl-k ctrl-o': 'change-case:sentence'
+  'ctrl-k ctrl-i': 'remove-whitespace:remove'
+  'ctrl-k ctrl-j': 'remove-whitespace:shrink'
+  'ctrl-k ctrl-h': 'remove-whitespace:replace'

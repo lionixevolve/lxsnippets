@@ -13,6 +13,9 @@
     ui:
       panelContrast: true
   core:
+    packagesWithKeymapsDisabled: [
+      "remove-whitespace"
+    ]
     projectHome: "/home/qma/public_html"
     themes: [
       "atom-material-ui"
@@ -40,6 +43,8 @@
     pathToExecuteWithTimerFinish: "qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop"
     pathToExecuteWithTimerStart: "qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop && qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
     playSounds: false
+  "remove-whitespace": {}
+  "string-looper": {}
   "trailing-spaces":
     enableForCursorLines: true
     enableForIndentation: true
