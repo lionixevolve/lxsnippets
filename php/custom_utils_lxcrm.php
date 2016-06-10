@@ -36,5 +36,5 @@ function getRelationshipByModules($m1, $m2)
         }
     }
 
-    return false;
+    return array('relationship' => "Not found a relationship between {$m1} and {$m2}", 'module' => 'none');
 }
