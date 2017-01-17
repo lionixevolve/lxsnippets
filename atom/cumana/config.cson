@@ -1,6 +1,10 @@
 "*":
+  "activate-power-mode":
+    particles:
+      totalCount: {}
   "atom-beautify":
-    _analyticsUserId: "5de0620f-9d7b-4748-aa27-6d6fcd4e8c52"
+    general:
+      _analyticsUserId: "5de0620f-9d7b-4748-aa27-6d6fcd4e8c52"
   "atom-material-ui":
     colors:
       genAccent: true
@@ -12,16 +16,25 @@
       compactList: true
     ui:
       panelContrast: true
+  "color-picker": {}
   core:
+    disabledPackages: [
+      "terminal-plus"
+      "activate-power-mode"
+      "pomodoro"
+    ]
     packagesWithKeymapsDisabled: [
       "remove-whitespace"
+      "activate-power-mode"
     ]
     projectHome: "/home/qma/public_html"
+    telemetryConsent: "limited"
     themes: [
       "atom-material-ui"
       "batman-syntax"
     ]
   editor:
+    fontSize: 17
     invisibles: {}
     preferredLineLength: 120
     scrollPastEnd: true
@@ -44,6 +57,12 @@
     pathToExecuteWithTimerStart: "qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop && qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
     playSounds: false
   "remove-whitespace": {}
+  "split-diff":
+    diffWords: true
+    ignoreWhitespace: true
+    leftEditorColor: "red"
+    rightEditorColor: "green"
+    syncHorizontalScroll: true
   "string-looper": {}
   "trailing-spaces":
     enableForCursorLines: true
@@ -51,3 +70,11 @@
   welcome:
     showOnStartup: false
   whitespace: {}
+".source.ts":
+  editor:
+    preferredLineLength: 120
+    tabLength: 4
+".source.tsx":
+  editor:
+    preferredLineLength: 120
+    tabLength: 4
